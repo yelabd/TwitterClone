@@ -27,7 +27,9 @@ class LoginViewController: UIViewController {
         
         twitterClient!.deauthorize()
         
-        twitterClient!.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "Youssef://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
+        //let tempURL = URL(string: "https://google.com")!
+        
+        twitterClient!.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterClone://oauth") , scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
             print("token obtained")
             print(requestToken!.token)
             let token = requestToken!.token
