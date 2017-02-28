@@ -8,6 +8,7 @@
 
 import UIKit
 import BDBOAuth1Manager
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -49,19 +50,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(url.description)
         
         let requestToken = BDBOAuth1Credential(queryString: url.query)
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "ITAlNcYUNcl1lcDbkI2PeJB53", consumerSecret: "RPRDAzafa2hz5s3LD81uYnBX2cDaSz0CYxGwk99UstOot44yh2")
         
-        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
+        let client = TwitterClient.sharedInstance!
+        
+         client.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
             print("Access token obtained")
             
-            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask,response: Any?) in
-                print(response!)
-            }, failure: { (task: URLSessionDataTask?, error: Error) in
-                
+            
+            client.homeTimeLine(success: { (tweets: [Tweet]) in
+                for tweet in tweets{
+                    print(tweet.text)
+                }
+            }, failure: { (error : Error) in
+                print(error.localizedDescription)
             })
+            
+             
         }, failure: { (error: Error?) in
             print(error?.localizedDescription)
         })
+        
+        
 
         
         
