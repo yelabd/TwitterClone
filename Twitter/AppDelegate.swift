@@ -20,7 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
 
+        if User.currentUser != nil{
+            print("There is a current user")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "MainNavigationController")
+            window?.rootViewController = vc
+        }else{
+            print("There is no current user")
+        }
         
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main) { (Notification) in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = vc
+
+        }
         return true
     }
 
@@ -49,31 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         print(url.description)
         
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        
-        let client = TwitterClient.sharedInstance!
-        
-         client.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
-            print("Access token obtained")
-            
-            
-            client.homeTimeLine(success: { (tweets: [Tweet]) in
-                for tweet in tweets{
-                    print(tweet.text)
-                }
-            }, failure: { (error : Error) in
-                print(error.localizedDescription)
-            })
-            
-             
-        }, failure: { (error: Error?) in
-            print(error?.localizedDescription)
-        })
-        
-        
-
-        
-        
+        TwitterClient.sharedInstance!.handleOpenUrl(url: url)
         
         return true
     }

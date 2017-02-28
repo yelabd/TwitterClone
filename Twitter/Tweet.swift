@@ -15,6 +15,10 @@ class Tweet: NSObject {
     var timeStamp: Date?
     var retweetCount: Int = 0
     var favoriteCount: Int = 0
+    var username : String = ""
+    var handle : String = ""
+    var profileUrlString : String?
+    var profileUrl : URL?
     
     
     init(json : JSON){
@@ -31,6 +35,19 @@ class Tweet: NSObject {
         formatter.dateFormat = "EEE MMM d HH:MM:ss Z y"
         
         self.timeStamp = formatter.date(from: timeStampString)
+        
+        
+        self.username = json["user"]["name"].stringValue
+        self.handle = json["user"]["screen_name"].stringValue
+        
+        self.profileUrlString = json["user"]["profile_image_url_https"].stringValue
+        print(profileUrlString)
+        
+        if let profileUrlStirng = profileUrlString{
+            print(profileUrlStirng)
+            self.profileUrl = URL(string: profileUrlStirng)
+        }
+
         
     }
     
