@@ -33,7 +33,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![alt tag](https://raw.githubusercontent.com/yelabd/TwitterClone/blob/master/tr4.gif)
+![alt tag](https://raw.githubusercontent.com/yelabd/TwitterClone/blob/tr4.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
