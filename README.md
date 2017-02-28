@@ -18,11 +18,12 @@ The following **optional** features are implemented:
 
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 - [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
-- [X] User can pull to refresh.
+- [ ] User can pull to refresh.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [ ] List anything else that you can get done to improve the app functionality
+
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -33,7 +34,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![alt tag](https://raw.githubusercontent.com/yelabd/TwitterClone/blob/tr4.gif)
+![alt tag](https://raw.githubusercontent.com/yelabd/TwitterClone/blob/demo.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
