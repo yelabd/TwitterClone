@@ -20,26 +20,16 @@ class MainViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
-//        
-//        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) in
-//            self.tweets = tweets
-//            
-//            for tweet in tweets{
-//                print(tweet.text)
-//            }
-//        }, failure: { (error: Error) in
-//            print(error.localizedDescription)
-//        })
         
-//        let banner = UIImage(named: "TwitterLogoBlue")
-//        let imageView = UIImageView(image:banner)
-//        var bannerWidth = navigationController?.navigationBar.frame.size.width
-//        var bannerHeight = navigationController?.navigationBar.frame.size.height
-//        var bannerx = (bannerWidth! / 2 - banner!.size.width / 2)
-//        var bannery = bannerHeight! / 2 - banner!.size.height / 2
-//        imageView.frame = CGRect(x: bannerx, y: bannery, width: bannerWidth!, height: bannerHeight!)
-//        imageView.contentMode = UIViewContentMode.scaleAspectFit
-//        self.navigationItem.titleView = imageView
+        let banner = UIImage(named: "TwitterLogoBlue")
+        let imageView = UIImageView(image:banner)
+        var bannerWidth = navigationController?.navigationBar.frame.size.width
+        var bannerHeight = navigationController?.navigationBar.frame.size.height
+        var bannerx = (bannerWidth! / 2 - banner!.size.width / 2)
+        var bannery = bannerHeight! / 2 - banner!.size.height / 2
+        imageView.frame = CGRect(x: bannerx, y: bannery, width: bannerWidth!, height: bannerHeight!)
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        self.navigationItem.titleView = imageView
 
         TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) in
             self.allTweets = tweets
@@ -109,6 +99,21 @@ class MainViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         cell.tweet = tweetInfo
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "tweetSegue" {
+            let cell = sender as! TweetCell
+            
+            let destination = segue.destination as! TweetViewController
+            
+            let row = self.tableView.indexPath(for: cell)?.row
+            
+            let tweet = self.allTweets[row!]
+            destination.tweet = tweet
+        }
+        
     }
 
    

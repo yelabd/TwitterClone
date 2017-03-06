@@ -42,12 +42,38 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <segue destination="373-qe-sGQ" kind="presentation" identifier="loginSegue" id="bh1-Ve-WB8"/>
+                        <segue destination="yT1-hi-OEW" kind="presentation" identifier="loginSegue" id="bfL-b2-Ksr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="71" y="120"/>
+            <point key="canvasLocation" x="-414" y="118"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="Qi9-BQ-l8o">
+            <objects>
+                <viewController id="cnI-CK-Avc" customClass="ComposeViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zI1-rV-F2C"/>
+                        <viewControllerLayoutGuide type="bottom" id="ahO-38-Bpc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iCz-30-DlO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0pN-sk-Av0">
+                        <barButtonItem key="leftBarButtonItem" image="close-icon" id="umx-dS-w3k">
+                            <color key="tintColor" red="0.30167028309999999" green="0.62387055160000005" blue="0.9216458797" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="onCancelButton:" destination="cnI-CK-Avc" id="gvO-zm-lV3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f5u-PF-tfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2431" y="-737"/>
         </scene>
         <!--Home-->
         <scene sceneID="InP-oh-8zc">
@@ -168,7 +194,7 @@
                                             <outlet property="retweetLabel" destination="VLy-Vl-Dp4" id="Cnd-Jn-9ae"/>
                                             <outlet property="timeLabel" destination="3oY-Ia-Pjk" id="cHV-zp-uit"/>
                                             <outlet property="usernameLabel" destination="owK-wJ-4ga" id="E7P-XW-yb3"/>
-                                            <segue destination="JKW-mY-A8i" kind="show" id="bQh-va-iis"/>
+                                            <segue destination="JKW-mY-A8i" kind="show" identifier="tweetSegue" id="bQh-va-iis"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -177,9 +203,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="KBH-BG-UZ3">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="GQW-jZ-vBM">
+                        <barButtonItem key="leftBarButtonItem" image="back-icon" id="GQW-jZ-vBM">
+                            <color key="tintColor" red="0.30167028309999999" green="0.62387055160000005" blue="0.9216458797" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="onLogoutButton:" destination="bpu-TC-30V" id="uVw-Wq-w50"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="edit-icon" id="lW2-Dk-Yzl">
+                            <color key="tintColor" red="0.30167028309999999" green="0.62387055160000005" blue="0.9216458797" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <segue destination="QsT-aS-O1U" kind="presentation" identifier="composeSegue" id="pWX-YK-YSM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -191,10 +224,10 @@
             </objects>
             <point key="canvasLocation" x="1600.8" y="118.29085457271366"/>
         </scene>
-        <!--View Controller-->
+        <!--Tweet View Controller-->
         <scene sceneID="cwl-sa-qYV">
             <objects>
-                <viewController id="JKW-mY-A8i" sceneMemberID="viewController">
+                <viewController id="JKW-mY-A8i" customClass="TweetViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FBb-fH-rrb"/>
                         <viewControllerLayoutGuide type="bottom" id="LbB-SQ-83z"/>
@@ -209,10 +242,11 @@
             </objects>
             <point key="canvasLocation" x="2406" y="125"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Home-->
         <scene sceneID="wKm-IT-J1j">
             <objects>
                 <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="373-qe-sGQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="home-icon" id="aUS-pG-Ejf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t6P-r7-PZv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -227,10 +261,70 @@
             </objects>
             <point key="canvasLocation" x="808.79999999999995" y="118.29085457271366"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="V3N-ua-pxG">
+            <objects>
+                <tabBarController id="yT1-hi-OEW" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="iDs-ng-N2I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="373-qe-sGQ" kind="relationship" relationship="viewControllers" id="gge-CE-PTz"/>
+                        <segue destination="j3F-No-6JF" kind="relationship" relationship="viewControllers" id="rYX-mW-lRi"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IhM-C5-YpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-222" y="991"/>
+        </scene>
+        <!--Me-->
+        <scene sceneID="tuh-ks-9hJ">
+            <objects>
+                <viewController id="j3F-No-6JF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FnO-Es-sw9"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pxp-b7-eWI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8pv-TB-WcL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Me" image="profile-Icon" selectedImage="profile-Icon" id="OHq-oO-68e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Hz-Y7-d3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="878" y="991"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YdM-O6-NKh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QsT-aS-O1U" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="70i-H4-3Sg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cnI-CK-Avc" kind="relationship" relationship="rootViewController" id="FEt-fw-tsH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uT5-xb-2Nb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1601" y="-737"/>
+        </scene>
     </scenes>
     <resources>
         <image name="TwitterLogo" width="120" height="120"/>
+        <image name="back-icon" width="30" height="30"/>
+        <image name="close-icon" width="26" height="24"/>
+        <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="home-icon" width="30" height="30"/>
+        <image name="profile-Icon" width="26" height="26"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
 </document>
