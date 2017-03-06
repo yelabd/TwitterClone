@@ -34,7 +34,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![alt tag](https://raw.githubusercontent.com/yelabd/ChatApp/blob/master/demo.gif)
+![alt tag](https://raw.githubusercontent.com/yelabd/ChatApp/blob/master/demo3.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -44,7 +44,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Youssef Elabd]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
