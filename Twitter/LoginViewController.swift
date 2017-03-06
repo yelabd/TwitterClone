@@ -16,15 +16,15 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) in
-//            self.tweets = tweets
-//            
-//            for tweet in tweets{
-//                print(tweet.text)
-//            }
-//        }, failure: { (error: Error) in
-//            print(error.localizedDescription)
-//        })
+        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) in
+            self.tweets = tweets
+            
+            for tweet in tweets{
+                print(tweet.text)
+            }
+        }, failure: { (error: Error) in
+            print(error.localizedDescription)
+        })
 
         
         // Do any additional setup after loading the view.
