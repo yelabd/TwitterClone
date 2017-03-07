@@ -19,6 +19,7 @@ class Tweet: NSObject {
     var handle : String = ""
     var profileUrlString : String?
     var profileUrl : URL?
+    var id : String?
     
     
     init(json : JSON){
@@ -39,6 +40,7 @@ class Tweet: NSObject {
         
         self.username = json["user"]["name"].stringValue
         self.handle = json["user"]["screen_name"].stringValue
+        self.id = json["user"]["id_str"].stringValue
         
         self.profileUrlString = json["user"]["profile_image_url_https"].stringValue
         //print(profileUrlString)

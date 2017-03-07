@@ -22,6 +22,9 @@ class User: NSObject {
     var backgroundUrlString: String?
     var backgroundUrl: URL?
     var userID: String?
+    var followerCount: Int?
+    var followingCount: Int?
+    var tweetCount: Int?
     
     init(dictionary : NSDictionary){
         self.dictionary = dictionary
@@ -31,6 +34,9 @@ class User: NSObject {
         self.profileUrlStirng = dictionary["profile_image_url_https"] as? String
         self.backgroundUrlString = dictionary["profile_background_image_url_https"] as? String
         self.userID = dictionary["id_str"] as? String
+        self.tweetCount = dictionary["statuses_count"] as? Int
+        self.followerCount = dictionary["followers_count"] as? Int
+        self.followingCount = dictionary["friends_count"] as? Int
         
         if let backgroundUrlString = backgroundUrlString{
             self.backgroundUrl = URL(string: backgroundUrlString)

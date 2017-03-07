@@ -45,6 +45,23 @@ class TwitterClient: BDBOAuth1SessionManager {
 
     }
     
+//    func getAccount(id: String,success: @escaping (User) -> (),failure: @escaping (Error) -> ()){
+//        get("1.1/users/lookup.json", parameters: ["user_id":id], progress: nil, success: { (task: URLSessionDataTask,response: Any?) in
+//            print(response!)
+//            let dictionary = response as! NSArray
+//            
+//            let dictionary1: NSDictionary? = nil
+//            //let json = JSON(response!)
+//            let user = User(dictionary: dictionary1!)
+//            
+//            success(user)
+//        }, failure: { (task: URLSessionDataTask?, error: Error) in
+//            failure(error)
+//        })
+//        
+//    }
+
+    
     func currentTimeLine(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
         get("1.1/statuses/user_timeline.json", parameters: ["user_id": getUserID()], progress: nil, success: { (task: URLSessionDataTask,response: Any?) in
             //print(response!)
@@ -64,6 +81,27 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
         
     }
+    
+    func userTimeLine(id: String,success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
+        get("1.1/statuses/user_timeline.json", parameters: ["user_id": id], progress: nil, success: { (task: URLSessionDataTask,response: Any?) in
+            //print(response!)
+            let json = JSON(response!).arrayValue
+            
+            let tweets = Tweet.tweetsWithArray(jsons: json)
+            
+            print("SUcccccsndf;kZDNf")
+            for tweet in tweets{
+                print(tweet.text)
+            }
+            
+            success(tweets)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+            
+        })
+        
+    }
+
     
     func getUserID() -> String{
         var id = ""

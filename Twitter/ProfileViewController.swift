@@ -18,7 +18,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bgImageView: UIImageView!
+    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var tweetCount: UILabel!
+    @IBOutlet weak var followingCount: UILabel!
+    @IBOutlet weak var followerCount: UILabel!
 
+    @IBOutlet weak var frontImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
@@ -34,9 +39,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         bgImageView.addSubview(blurView)
         
+        frontImageView.layer.cornerRadius = 3
+        frontImageView.clipsToBounds = true
+        frontImageView.layer.borderWidth = 2
+        frontImageView.layer.borderColor = UIColor.white.cgColor
+        
         TwitterClient.sharedInstance?.currentAccount(success: { (user: User) in
             self.user = user
             self.bgImageView.setImageWith((self.user?.profileUrl)!)
+            self.frontImageView.setImageWith((self.user?.profileUrl)!)
+            self.nameLabel.text = self.user?.name
+            self.handleLabel.text = "@\(self.user!.screenname)"
+            self.tweetCount.text = String(describing: user.tweetCount!)
+            self.followingCount.text = String(describing: user.followingCount!)
+            self.followerCount.text = String(describing: user.followerCount!)
+            
             print(user.name)
             
         }, failure: { (error: Error) in

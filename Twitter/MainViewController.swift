@@ -83,22 +83,13 @@ class MainViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
         let tweetInfo = self.allTweets[row]
         
-        //cell.descLabel.text = tweetInfo.text
-        //print(tweetInfo.text)
-        
-               //        if (businessInfo.rating < 4.0 && businessInfo.rating > 2){
-        //            let yellowColor = UIColor(red: 255/255.0, green: 223/255.0, blue: 0/255.0, alpha: 1.0)
-        //            cell.ratingView.backgroundColor = yellowColor
-        //        }else if(businessInfo.rating <= 2){
-        //            cell.ratingView.backgroundColor = UIColor.red
-        //        }
-        
-        
-        //cell.business = businessInfo
-        
         cell.tweet = tweetInfo
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -112,6 +103,27 @@ class MainViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             
             let tweet = self.allTweets[row!]
             destination.tweet = tweet
+        }else if segue.identifier == "indvProfileSegue"{
+            
+            var indexPath: IndexPath!
+            
+            if let button = sender as? UIButton {
+                if let superview = button.superview {
+                    if let cell = superview.superview as? TweetCell {
+                        indexPath = tableView.indexPath(for: cell)
+                
+                    }
+                }
+            }
+            
+            let row = indexPath.row
+            
+            let destination = segue.destination as! IndvProfileViewController
+            
+                       
+            let tweet = self.allTweets[row]
+            destination.tweet = tweet
+
         }
         
     }
