@@ -12,6 +12,7 @@ import SwiftyJSON
 
 class TwitterClient: BDBOAuth1SessionManager {
     
+    var userID: Int?
         
     static let sharedInstance = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "ITAlNcYUNcl1lcDbkI2PeJB53", consumerSecret: "RPRDAzafa2hz5s3LD81uYnBX2cDaSz0CYxGwk99UstOot44yh2")
     
@@ -43,6 +44,39 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
 
     }
+    
+    func currentTimeLine(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
+        get("1.1/statuses/user_timeline.json", parameters: ["user_id": getUserID()], progress: nil, success: { (task: URLSessionDataTask,response: Any?) in
+            //print(response!)
+            let json = JSON(response!).arrayValue
+            
+            let tweets = Tweet.tweetsWithArray(jsons: json)
+            
+            print("SUcccccsndf;kZDNf")
+            for tweet in tweets{
+                print(tweet.text)
+            }
+            
+            success(tweets)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+            
+        })
+        
+    }
+    
+    func getUserID() -> String{
+        var id = ""
+        currentAccount(success: { (user: User) in
+            id = user.userID!
+        }) { (error: Error) in
+            print(error.localizedDescription)
+            print("jdfgajfnvzjs")
+        }
+        
+        return id
+    }
+
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error) -> ())?

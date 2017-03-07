@@ -84,7 +84,7 @@ class MainViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         let tweetInfo = self.allTweets[row]
         
         //cell.descLabel.text = tweetInfo.text
-        print(tweetInfo.text)
+        //print(tweetInfo.text)
         
                //        if (businessInfo.rating < 4.0 && businessInfo.rating > 2){
         //            let yellowColor = UIColor(red: 255/255.0, green: 223/255.0, blue: 0/255.0, alpha: 1.0)

@@ -19,6 +19,9 @@ class User: NSObject {
     var profileUrl: URL?
     var profileUrlStirng : String?
     var dictionary : NSDictionary?
+    var backgroundUrlString: String?
+    var backgroundUrl: URL?
+    var userID: String?
     
     init(dictionary : NSDictionary){
         self.dictionary = dictionary
@@ -26,6 +29,13 @@ class User: NSObject {
         self.desc = (dictionary["description"] as? String)!
         self.screenname = (dictionary["screen_name"] as? String)!
         self.profileUrlStirng = dictionary["profile_image_url_https"] as? String
+        self.backgroundUrlString = dictionary["profile_background_image_url_https"] as? String
+        self.userID = dictionary["id_str"] as? String
+        
+        if let backgroundUrlString = backgroundUrlString{
+            self.backgroundUrl = URL(string: backgroundUrlString)
+            print("Back ground url \(backgroundUrlString)")
+        }
         
         if let profileUrlStirng = profileUrlStirng{
             print(profileUrlStirng)

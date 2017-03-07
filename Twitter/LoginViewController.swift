@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
             self.tweets = tweets
             
             for tweet in tweets{
-                print(tweet.text)
+                print("hi \(tweet.timeStamp)")
             }
         }, failure: { (error: Error) in
             print(error.localizedDescription)

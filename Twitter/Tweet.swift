@@ -41,7 +41,7 @@ class Tweet: NSObject {
         self.handle = json["user"]["screen_name"].stringValue
         
         self.profileUrlString = json["user"]["profile_image_url_https"].stringValue
-        print(profileUrlString)
+        //print(profileUrlString)
         
         if let profileUrlStirng = profileUrlString{
             print(profileUrlStirng)
