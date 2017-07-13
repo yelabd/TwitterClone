@@ -56,10 +56,7 @@ Describe any challenges encountered while building the app.
     See the License for the specific language governing permissions and
     limitations under the License.
 
-# Project 5 - *Twitter*
-
-Time spent: **15** hours spent in total
-
+# *Twitter Part 2*
 ## User Stories
 
 The following **required** functionality is completed:
